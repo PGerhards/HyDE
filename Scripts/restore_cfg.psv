@@ -61,7 +61,6 @@ P|${HOME}/.config/waybar|user-style.css|waybar
 S|${HOME}/.config/waybar|modules styles layouts menus config.jsonc theme.css style.css|waybar
 S|${HOME}/.local/share|waybar|waybar
 
-
  Terminal 
 P|${HOME}/.config|lsd|lsd
 P|${HOME}/.config|fastfetch|fastfetch
@@ -72,8 +71,14 @@ P|${HOME}/.config/kitty|kitty.conf|kitty
 
  Shell 
 P|${HOME}/.config|fish|fish
-P|${HOME}|.zshrc .hyde.zshrc .p10k.zsh|zsh zsh-theme-powerlevel10k pokego-bin
-S|${HOME}|.zshenv|zsh zsh-theme-powerlevel10k
+P|${HOME}|.zshrc .hyde.zshrc .p10k.zsh|zsh
+P|${HOME}/.config/starship|starship.toml|starship
+S|${HOME}|.zshenv|zsh
+
+ Vim 
+P|${HOME}/.config/vim|vimrc|vim
+S|${HOME}/.config/vim/colors|wallbash.vim|vim
+S|${HOME}/.config/vim|hyde.vim|vim
 
  File Explorer 
 P|${HOME}/.local/state|dolphinstaterc|dolphin
@@ -92,7 +97,7 @@ P|${HOME}/.config|libinput-gestures.conf|libinput-gestures
 P|${HOME}/.config|spotify-flags.conf|spotify
 P|${HOME}/.config|code-flags.conf|code
 P|${HOME}/.config|code-flags.conf|visual-studio-code-bin
-P|${HOME}/.config|vscodium-flags.conf|vscodium
+P|${HOME}/.config|codium-flags.conf|vscodium
 P|${HOME}/.config|electron-flags.conf|electron
 
  Notifications 
