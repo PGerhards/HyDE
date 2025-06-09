@@ -1,0 +1,21 @@
+{
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+          "urgent": "",
+          "active": "", // focused workspace on current monitor 
+          "visible": "", // focused workspace on other monitors
+          "default": "",
+          "empty": "" // persistent (created by this plugin)
+        },
+        "all-outputs": false, // recommended
+        "rotate": 0,
+        "class": "no-margin-padding",
+        "active-only": false,
+        "on-click": "activate",
+        "disable-scroll": false,
+        "on-scroll-up": "hyprctl dispatch workspace -1",
+        "on-scroll-down": "hyprctl dispatch workspace +1",
+        "persistent-workspaces": {}
+    }
+}
