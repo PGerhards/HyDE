@@ -10,7 +10,7 @@ Instead of this file, please use
 
 TODO: Manual removal will be announced in the release notes after  the removal of this module upstream.
 
-code:   e3b0c44298fc1c14   - lol just a random hash so we can identify the file in the future
+code:   e3b0c44298fc1c14   - This is a random hash used to identify the file in the future.
 
 
 {} // Empty Object to avoid syntax errors

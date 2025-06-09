@@ -1,6 +1,6 @@
 {
   "custom/sensorsinfo": {
-    "exec": "hyde-shell sensorsinfo.py",
+    "exec": "hyde-shell sensorsinfo",
     "return-type": "json",
     "format": "{0}",
     "rotate": 0,
@@ -8,7 +8,7 @@
     "interval": 5,
     "tooltip": true,
     "max-length": 1000,
-    "on-click": "hyde-shell sensorsinfo.py --next",
+    "on-click": "hyde-shell sensorsinfo --next",
     "signal": 19
   }
 }
