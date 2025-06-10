@@ -68,10 +68,18 @@ Usage: $0 [options]
             d : install hyprland [d]efaults without configs --noconfirm
             r : [r]estore config files
             s : enable system [s]ervices
-            n : ignore/[n]o [n]vidia actions
+            n : ignore/[n]o [n]vidia actions (-irsn to ignore nvidia)
             h : re-evaluate S[h]ell
             m : no the[m]e reinstallations
             t : [t]est run without executing (-irst to dry run all)
+
+NOTE: 
+        running without args is equivalent to -irs
+        to ignore nvidia, run -irsn
+
+WRONG:
+        install.sh -n # This will not work
+
 EOF
         exit 1
         ;;
@@ -128,10 +136,11 @@ EOF
     cp "${scrDir}/pkg_core.lst" "${scrDir}/install_pkg.lst"
     trap 'mv "${scrDir}/install_pkg.lst" "${cacheDir}/logs/${HYDE_LOG}/install_pkg.lst"' EXIT
 
+    echo -e "\n#user packages" >>"${scrDir}/install_pkg.lst" # Add a marker for user packages
     if [ -f "${custom_pkg}" ] && [ -n "${custom_pkg}" ]; then
         cat "${custom_pkg}" >>"${scrDir}/install_pkg.lst"
     fi
-    echo -e "\n#user packages" >>"${scrDir}/install_pkg.lst" # Add a marker for user packages
+
     #--------------------------------#
     # add nvidia drivers to the list #
     #--------------------------------#
@@ -142,7 +151,7 @@ EOF
             done
             nvidia_detect --drivers >>"${scrDir}/install_pkg.lst"
         else
-            print_log -warn "Nvidia" " :: " "Nvidia GPU detected but ignored..."
+            print_log -warn "Nvidia" "Nvidia GPU detected but ignored..."
         fi
     fi
     nvidia_detect --verbose
@@ -219,7 +228,7 @@ EOF
     #--------------------------------#
     # install packages from the list #
     #--------------------------------#
-    [ ${flg_DryRun} -eq 1 ] || "${scrDir}/install_pkg.sh" "${scrDir}/install_pkg.lst"
+    "${scrDir}/install_pkg.sh" "${scrDir}/install_pkg.lst"
 fi
 
 #---------------------------#
@@ -228,7 +237,7 @@ fi
 if [ ${flg_Restore} -eq 1 ]; then
     cat <<"EOF"
 
-             _           _d
+             _           _
  ___ ___ ___| |_ ___ ___|_|___ ___
 |  _| -_|_ -|  _| . |  _| |   | . |
 |_| |___|___|_| |___|_| |_|_|_|_  |
@@ -298,13 +307,15 @@ EOF
 fi
 
 if [ $flg_Install -eq 1 ]; then
-    print_log -stat "\nInstallation" "completed"
+    echo ""
+    print_log -g "Installation" " :: " "COMPLETED!"
 fi
-print_log -stat "Log" "View logs at ${cacheDir}/logs/${HYDE_LOG}"
+print_log -b "Log" " :: " -y "View logs at ${cacheDir}/logs/${HYDE_LOG}"
 if [ $flg_Install -eq 1 ] ||
     [ $flg_Restore -eq 1 ] ||
-    [ $flg_Service -eq 1 ]; then
-    print_log -stat "HyDE" "It is recommended to reboot the system after installing or upgrading HyDE. Do you want to reboot the system now? (y/N)"
+    [ $flg_Service -eq 1 ] &&
+    [ $flg_DryRun -ne 1 ]; then
+    print_log -stat "HyDE" "It is not recommended to use newly installed or upgraded HyDE without rebooting the system. Do you want to reboot the system? (y/N)"
     read -r answer
 
     if [[ "$answer" == [Yy] ]]; then
