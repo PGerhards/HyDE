@@ -16,17 +16,12 @@
   // ? Groups per side
   "modules-left": ["group/leaf-inverse"],
   "modules-center": ["group/pill-in#center", "group/pill#2"],
-  //"modules-center": ["group/pill#1", "group/pill-in#center", "group/pill#2"],
   "modules-right": ["group/leaf"],
   //  ? Declaring the groups
   "group/pill#2": {
     "orientation": "inherit",
-    "modules": ["custom/hyprsunset", "idle_inhibitor"]
+    "modules": ["custom/spotify"]
   },
-  //"group/pill#1": {
-  //  "orientation": "inherit",
-  //  "modules": ["custom/weather"]
-  //},
   "group/leaf-inverse": {
     "orientation": "inherit",
     "modules": ["hyprland/workspaces", "wlr/taskbar", "hyprland/window"]
@@ -44,15 +39,10 @@
   "group/leaf": {
     "orientation": "inherit",
     "modules": [
-      "privacy",
-      "backlight",
+      // "privacy",
       "tray",
-      "network#bandwidthUpBytes",
-      "network#bandwidthDownBytes",
-      "custom/bluetooth",
       "pulseaudio",
       "pulseaudio#microphone",
-      "battery",
       "power-profiles-daemon",
       "custom/gpuinfo",
       "custom/cpuinfo",

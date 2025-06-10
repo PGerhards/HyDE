@@ -92,18 +92,18 @@
     ],
     "wlr/taskbar#windows": {
         "icon-size": 16.0,
-        "icon-size-multiplier": 1.6
+        "icon-size-multiplier": 1.8
     },
     "wlr/taskbar": {
         "icon-size": 16.0,
-        "icon-size-multiplier": 1.6
+        "icon-size-multiplier": 1.8
     },
     "privacy": {
-        "icon-size": 10,
-        "icon-size-multiplier": 1
+        "icon-size": 16,
+        "icon-size-multiplier": 1.8
     },
     "tray": {
         "icon-size": 16.0,
-        "icon-size-multiplier": 1.6
+        "icon-size-multiplier": 1.8
     }
 }

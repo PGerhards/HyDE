@@ -90,8 +90,8 @@ annotation_post_command = [""]
 skip_template = [""]
 
 [waybar]
-font = CaskaydiaCove Nerd Font Mono
-scale = 20
+font = "JetBrainsMono Nerd Font"
+scale = 12
 
 [weather]
 temperature_unit = "c"
