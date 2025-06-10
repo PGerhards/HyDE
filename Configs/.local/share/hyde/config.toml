@@ -90,7 +90,7 @@ annotation_post_command = [""]
 skip_template = [""]
 
 [waybar]
-font = "JetBrainsMono Nerd Font"
+font = CaskaydiaCove Nerd Font Mono
 scale = 30
 
 [weather]
