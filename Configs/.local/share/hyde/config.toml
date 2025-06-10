@@ -91,7 +91,7 @@ skip_template = [""]
 
 [waybar]
 font = CaskaydiaCove Nerd Font Mono
-scale = 30
+scale = 20
 
 [weather]
 temperature_unit = "c"
