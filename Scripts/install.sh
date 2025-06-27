@@ -292,18 +292,7 @@ if [ ${flg_Service} -eq 1 ]; then
 
 EOF
 
-    while read -r serviceChk; do
-
-        if [[ $(systemctl list-units --all -t service --full --no-legend "${serviceChk}.service" | sed 's/^\s*//g' | cut -f1 -d' ') == "${serviceChk}.service" ]]; then
-            print_log -y "[skip] " -b "active " "Service ${serviceChk}"
-        else
-            print_log -y "start" "Service ${serviceChk}"
-            if [ $flg_DryRun -ne 1 ]; then
-                sudo systemctl enable "${serviceChk}.service"
-            fi
-        fi
-
-    done <"${scrDir}/system_ctl.lst"
+    "${scrDir}/restore_svc.sh"
 fi
 
 if [ $flg_Install -eq 1 ]; then
