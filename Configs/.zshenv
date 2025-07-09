@@ -26,7 +26,7 @@
 # my old config end
 
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-ZDOTDIR="${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}"
+export ZDOTDIR="${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}"
 
 if ! source $ZDOTDIR/.zshenv; then
     echo "FATAL Error: Could not source $ZDOTDIR/.zshenv"
