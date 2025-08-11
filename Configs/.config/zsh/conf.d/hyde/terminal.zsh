@@ -226,12 +226,16 @@ else
     _load_completions
 fi
 
+__package_manager () { 
+    ${PM_COMMAND[@]} "$@"
+}
+
 alias c='clear' \
-    in='${PM_COMMAND[@]} install' \
-    un='${PM_COMMAND[@]} remove' \
-    up='${PM_COMMAND[@]} upgrade' \
-    pl='${PM_COMMAND[@]} search installed' \
-    pa='${PM_COMMAND[@]} search all' \
+    in='__package_manager install' \
+    un='__package_manager remove' \
+    up='__package_manager upgrade' \
+    pl='__package_manager search installed' \
+    pa='__package_manager search all' \
     vc='code' \
     fastfetch='fastfetch --logo-type kitty' \
     ..='cd ..' \
