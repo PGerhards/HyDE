@@ -32,6 +32,13 @@ export themesDir="$THEMES_DIR"
 export fontsDir="$FONTS_DIR"
 export hashMech="sha1sum"
 
+
+#? avoid notify-send to stall the script
+send_notifs () {
+    local args=("$@")
+    notify-send "${args[@]}" &
+}
+
 print_log() {
     # [ -t 1 ] && return 0 # Skip if not in the terminal
     while (("$#")); do
@@ -102,6 +109,8 @@ print_log() {
     echo "" >&2
 }
 
+
+
 get_hashmap() {
     unset wallHash
     unset wallList
@@ -134,7 +143,7 @@ get_hashmap() {
         fi
 
         local find_command
-        find_command="find \"${wallSource}\" -type f \\( $(list_extensions) \\) ! -path \"*/logo/*\" -exec \"${hashMech}\" {} +"
+        find_command="find -L \"${wallSource}\" -type f \\( $(list_extensions) \\) ! -path \"*/logo/*\" -exec \"${hashMech}\" {} +"
 
         [ "${LOG_LEVEL}" == "debug" ] && print_log -g "DEBUG:" -b "Running command:" "${find_command}"
 
@@ -225,7 +234,7 @@ get_themes() {
         [ -f "${thmDir}/.sort" ] && thmSortS+=("$(head -1 "${thmDir}/.sort")") || thmSortS+=("0")
         thmWallS+=("${realWallPath}")
         thmListS+=("${thmDir##*/}") # Use this instead of basename
-    done < <(find "${HYDE_CONFIG_HOME}/themes" -follow -mindepth 1 -maxdepth 1 -type d)
+    done < <(find -L "${HYDE_CONFIG_HOME}/themes" -mindepth 1 -maxdepth 1 -type d)
 
     while IFS='|' read -r sort theme wall; do
         thmSort+=("${sort}")
@@ -464,7 +473,7 @@ EOF
 #? Checks if the cursor is hovered on a window
 is_hovered() {
     data=$(hyprctl --batch -j "cursorpos;activewindow" | jq -s '.[0] * .[1]')
-    # evaulate the output of the JSON data into shell variables
+    # evaluate the output of the JSON data into shell variables
     eval "$(echo "$data" | jq -r '@sh "cursor_x=\(.x) cursor_y=\(.y) window_x=\(.at[0]) window_y=\(.at[1]) window_size_x=\(.size[0]) window_size_y=\(.size[1])"')"
 
     # Handle variables in case they are null
@@ -540,4 +549,4 @@ export -f get_hyprConf get_rofi_pos \
     get_themes print_log \
     pkg_installed paste_string \
     extract_thumbnail accepted_mime_types \
-    dconf_write
+    dconf_write send_notifs
