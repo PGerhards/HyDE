@@ -2,3 +2,10 @@
 # Environment variables should be on top
 # Updated config.toml file can be found at $HOME/.local/share/hyde/config.toml
 "$schema" = "https://raw.githubusercontent.com/HyDE-Project/HyDE/refs/heads/master/Configs/.local/share/hyde/schema/config.toml.json"
+[waybar]
+font = "CaskaydiaCove Nerd Font Mono"
+scale = 16
+
+[notification]
+font = "CaskaydiaCove Nerd Font Mono"
+font_size = 16

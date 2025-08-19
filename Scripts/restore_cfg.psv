@@ -29,8 +29,9 @@ B = Backup - Backup the target
 
 
  Hyde core files 
-P|${HOME}/.config/hyde|config.toml|hyprland
-P|${HOME}/.config/hypr|shaders.conf workflows.conf animations.conf windowrules.conf keybindings.conf userprefs.conf monitors.conf|hyprland
+S|${HOME}/.config/hyde|config.toml|hyprland
+P|${HOME}/.config/hypr|shaders.conf workflows.conf animations.conf|hyprland
+S|${HOME}/.config/hypr|windowrules.conf keybindings.conf userprefs.conf monitors.conf|hyprland
 P|${HOME}/.config/hypr|nvidia.conf|hyprland nvidia-utils
 P|${HOME}/.config/hypr/themes|theme.conf wallbash.conf colors.conf|hyprland
 S|${HOME}/.config/systemd|user|systemd
@@ -141,4 +142,4 @@ P|${HOME}/.config/hypr|hyprlock.conf|hyprlock
 S|${HOME}/.config/hypr|hyprlock|hyprlock
 
  Idle daemon 
-P|${HOME}/.config/hypr|hypridle.conf|hypridle
+S|${HOME}/.config/hypr|hypridle.conf|hypridle
