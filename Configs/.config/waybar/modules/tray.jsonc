@@ -6,7 +6,6 @@ https://man.archlinux.org/man/extra/waybar/waybar-tray.5
 */
 {
   "tray": {
-    // "icon-size": 16, //  Setting this is useless, waybar.py generates the font size scaled 1x monitor
     "spacing": 1
   }
 }

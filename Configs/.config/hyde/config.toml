@@ -3,14 +3,25 @@
 # Updated config.toml file can be found at $HOME/.local/share/hyde/config.toml
 "$schema" = "https://raw.githubusercontent.com/HyDE-Project/HyDE/refs/heads/master/Configs/.local/share/hyde/schema/config.toml.json"
 
-[waybar]
-font = "CaskaydiaCove Nerd Font Mono"
-scale = 16
+[hyprland]
+browser = "brave --passwor-store=basic"
+document_font_size = 12
+editor = "nvim"
+font = "CaskaydiaCove Nerd Font"
+font_size = 12
+monospace_font_size = 11
+terminal = "wezterm"
+quickapps = "wezterm"
 
 [notification]
-font = "CaskaydiaCove Nerd Font Mono"
-font_size = 16
+font = "CaskaydiaCove Nerd Font"
+font_size = 10
 
 [wallpaper]
 custom_paths = "$HOME/Bilder/Wallpaper"
 backend = "hyprpaper"
+
+[waybar]
+font = "CaskaydiaCove Nerd Font"
+scale = 18
+icon_size = 10
