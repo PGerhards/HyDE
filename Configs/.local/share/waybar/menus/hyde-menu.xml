@@ -11,7 +11,7 @@
 
                         <child>
                             <object class="GtkMenuItem" id="animations-select">
-                                <property name="label">  Select animation</property>
+                                <property name="label">  Select Animation</property>
                             </object>
                         </child>
 
@@ -109,6 +109,14 @@
 
 
                         <child>
+                            <object class="GtkMenuItem" id="waybar-style-select">
+                                <property name="label">  Select Style</property>
+                            </object>
+                        </child>
+
+
+
+                        <child>
                             <object class="GtkMenuItem" id="waybar-layout-next">
                                 <property name="label">  Next Layout</property>
                             </object>
@@ -154,7 +162,7 @@
 
                         <child>
                             <object class="GtkMenuItem" id="workflows-select">
-                                <property name="label">  Select workflows</property>
+                                <property name="label">  Select Workflow</property>
                             </object>
                         </child>
 
@@ -166,6 +174,27 @@
 
 
         <child>
+            <object class="GtkMenuItem" id="lockscreen_menu">
+                <property name="label">  Lockscreen</property>
+                <child type="submenu">
+                    <object class="GtkMenu">
+
+                        <child>
+                            <object class="GtkMenuItem" id="lockscreen-select">
+                                <property name="label">  Select Lockscreen</property>
+                            </object>
+                        </child>
+
+
+                    </object>
+                </child>
+            </object>
+        </child>
+
+
+
+
+        <child>
             <object class="GtkMenuItem" id="shaders_menu">
                 <property name="label">  Shaders</property>
                 <child type="submenu">
@@ -173,7 +202,7 @@
 
                         <child>
                             <object class="GtkMenuItem" id="shaders-select">
-                                <property name="label">  Select shaders</property>
+                                <property name="label">  Select Shader</property>
                             </object>
                         </child>
 

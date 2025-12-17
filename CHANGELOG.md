@@ -4,7 +4,105 @@ All notable changes to `HyDE` will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to _Modified_ [CalVer](https://calver.org/). See [Versioning](https://github.com/HyDE-Project/HyDE/blob/master/RELEASE_POLICY.md#versioning-yymq) For more info
 
-## v25.8.3 (Unreleased)
+## v25.11.1
+
+### Fixed
+
+- Gamelauncher: steamdeck holograph
+- Formatting using 
+
+### Added
+
+- Cliphist: image-history #1360
+- Cliphist: Rofi binds #1360
+- Gamelauncher: lutris inspector py script now uses the lutris DB to get meta dat making it faster than using lutris CLI
+- Gamelauncher: steam inspector py script is translated from fn_steam shell script. 
+- Gamelancher: catalog backend will merge both lutris and steam with hints for duplicates
+- Gamelauncher: "hyde-shell gamelauncher" now has --style and --backend args
+- Python: added pyproject.toml for ruff formatter
+- Shell: Added ".editorconfig" for shell scripts.
+- Cliphist: Added OCR backend. Invoking "hyde-shell cliphist -scan-image" or `Alt+V` on clipboard will extract the text of the latest image that exist in cliphist. 
+- Screenshot: Added QR code reading feature using `zbar` package. No default hotkey is provided. Call it via `hyde-shell screenshot sq`
+
+### Changed
+
+- Core: Moved core "color" switch inside directory in lib path. Prepare to make `~/.local/lib/hyde` external only scripts and corresponding directories will be sourced or executed internally. 
+- Wallbash: Remove wallbash.qt as it is a simple cp command now in the qtct.dcol template
+
+
+
+## v25.10.1
+
+### Fixed
+- Hyprland: Fix errors when `HYPRLAND_CONFIG` is not set yet
+- Fish: Please Move you configs to `~/.config/fish/conf.d`
+
+### Added
+
+- QT6CT: Added explicit font configuration for QT6 Applications see [#1309](https://github.com/HyDE-Project/HyDE/issues/1309)
+- QT5CT: Added explicit font configuration for QT5 Applications see [#1309](https://github.com/HyDE-Project/HyDE/issues/1309)
+- GTK3: Added explicit font configuration for GTK3 Applications see [#1309](https://github.com/HyDE-Project/HyDE/issues/1309)
+
+### Changed
+
+- Audio volume control: use `wpctl` instead of `pamixer` for managing audio volume when PipeWire server is running.
+- Fish: `config.fish` is now user defined config
+- Fish: `confi.d/hyde.fish` is used for HyDE only stuff. To override this create a separate file or use `config.fish` 
+
+
+### Migration
+
+For fish shell users: 
+Please empty your `~/.config/fish/config.fish` and use it to modify fish configurations.
+
+## v25.9.3
+
+### Changed
+
+- OCR: `imagemagick` screenshot preprocessing tuned for better recognition results
+- Docs: Improves release policy documentation by #1265
+
+### Added
+
+- Turkish documentation.
+- No changes have been made to other codes.
+- OCR: `tesseract` now supports explicit language settings via `hyde/config.toml`:
+    ```toml
+    [screenshot.ocr]
+    tesseract_languages = ["eng"]
+    ```
+    To use text recognition bind `hyde-shell screenshot sc` to any hotkey.
+- Hyprlock: Added hyprlock preview
+- File chooser dialogs in Hyprland now open centered and floating instead of off-screen
+
+### Fixed
+
+- Hyprlock: fix hyprlock crashing by handling it as a systemd scope unit
+- Hyprland: Backport Fix installation/update errors 
+
+## v25.9.1
+
+This release delivers a new gesture syntax for hyprland v0.51.0. This is a breaking change for users of the previous gesture syntax. Please update HyDE before opening an issue.
+
+For contributors, if you need to make the workspace animation vertical, example the `vertical.conf` animation, please **explicitly** add the following line to file.
+
+
+```
+gesture = 3, horizontal, unset # unsets the default horizontal gesture
+gesture = 3, vertical, workspace
+```
+
+### Changed
+
+- Waybar: Make temperature background transparent
+- hyde-shell: silent pyinit command
+- Binds: Use `hyde-shell logout` for cleaner session logout
+- Gestures: Chase hyprland v0.51.0 gesture syntax
+
+### Added
+- pinch gesture to toggle tile and floating
+
+## v25.8.3
 
 ### Fixed
 
@@ -33,6 +131,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Added pyprland boilerplate, no configs for now
 - Hyprland: Graciously handle some of the issues hyprland config issues for unknown SHELL
 - Pyprland: Use nc or socat to communicate with pyprland instead of pure python
+- Pyprland: Add boilerplate config for pyprland
 
 ## v25.8.1
 
