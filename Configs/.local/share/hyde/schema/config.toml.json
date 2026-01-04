@@ -192,6 +192,11 @@
                             "default": 10,
                             "description": "Scaling for wallpaper.",
                             "type": "integer"
+                        },
+                        "column_count": {
+                            "default": 3,
+                            "description": "Number of columns for wallpaper selector.",
+                            "type": "integer"
                         }
                     }
                 },
@@ -233,6 +238,20 @@
                             "default": 6,
                             "description": "Scaling for theme selector.",
                             "type": "integer"
+                        },
+                        "column_count": {
+                            "default": 3,
+                            "description": "Number of columns for theme selector.",
+                            "type": "integer"
+                        },
+                        "thumb_style": {
+                            "description": "Thumbnail style for theme selector.",
+                            "options": [
+                                "sqre",
+                                "quad",
+                                "blur"
+                            ],
+                            "type": "string"
                         }
                     }
                 },
@@ -428,6 +447,11 @@
             "description": "screenshot.sh configuration.",
             "type": "object",
             "properties": {
+                "annotation_enabled": {
+                    "default": true,
+                    "description": "Enable or disable annotation feature.",
+                    "type": "boolean"
+                },
                 "annotation_tool": {
                     "default": "satty",
                     "description": "Annotation tool for screenshots.",

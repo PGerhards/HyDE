@@ -6,8 +6,6 @@ else
     export_hyde_config
 fi
 
-export APP2UNIT_TYPE="scope"
-
 rofiStyle="${rofiStyle:-1}"
 if [[ $rofiStyle =~ ^[0-9]+$ ]]; then
     rofi_config="style_${rofiStyle:-1}"
@@ -96,4 +94,4 @@ rofi -show "$r_mode" \
     -theme "$rofi_config" \
     -dump-theme | {
     grep -q "fullscreen.*true" && touch "$HYDE_STATE_HOME/fullscreen_$r_mode"
-}                                                                                             || rm -f "$HYDE_STATE_HOME/fullscreen_$r_mode"
+} || rm -f "$HYDE_STATE_HOME/fullscreen_$r_mode"

@@ -318,14 +318,14 @@ fi
 get_temp_color() {
     local temp=$1
     declare -A temp_colors=(
-                                      [10000]="#8b0000"
-                                      [8000]="#ff6347"
-                                      [6500]=""
-                                      [5000]="#ffa500"
-                                      [4000]="#ff8c00"
-                                      [3000]="#ff471a"
-                                      [2000]="#d22f2f"
-                                      [1000]="#ad1f2f")
+             [10000]="#8b0000"
+             [8000]="#ff6347"
+             [6500]=""
+             [5000]="#ffa500"
+             [4000]="#ff8c00"
+             [3000]="#ff471a"
+             [2000]="#d22f2f"
+             [1000]="#ad1f2f")
     for threshold in $(echo "${!temp_colors[@]}" | tr ' ' '\n' | sort -nr); do
         if ((temp >= threshold)); then
             color=${temp_colors[$threshold]}
@@ -341,11 +341,11 @@ get_temp_color() {
 get_gamma_color() {
     local gamma=$1
     declare -A gamma_colors=(
-                                      [90]="#00ff00"
-                                      [70]="#90ee90"
-                                      [50]=""
-                                      [30]="#ffa500"
-                                      [20]="#ff6347")
+             [90]="#00ff00"
+             [70]="#90ee90"
+             [50]=""
+             [30]="#ffa500"
+             [20]="#ff6347")
     for threshold in $(echo "${!gamma_colors[@]}" | tr ' ' '\n' | sort -nr); do
         if ((gamma >= threshold)); then
             color=${gamma_colors[$threshold]}

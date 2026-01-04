@@ -1,34 +1,92 @@
 # Changelog
 
+<!--  
 All notable changes to `HyDE` will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to _Modified_ [CalVer](https://calver.org/). See [Versioning](https://github.com/HyDE-Project/HyDE/blob/master/RELEASE_POLICY.md#versioning-yymq) For more info
+ -->
 
-## v25.11.1
+## Upcoming Release
+
+
+### Changed
+
+- Cpuinfo: colors are now available as css class instead hardcoding in scripts.
+- Gpuinfo: colors are now available as css class instead hardcoding in scripts.
+
+
+## v25.12.4
 
 ### Fixed
 
-- Gamelauncher: steamdeck holograph
+- Game launcher: steamdeck holograph
 - Formatting using 
+- Hyprland 0.53 Syntax Revamp
+- Some old hyprdots theme parsing. 
 
 ### Added
 
+- Wallpaper: Added wallpaper '--multi-select' for multiple --outputs. Useful for per monitor or lockscreen/display manager background.  
+- Wallpaper: Selector option to modify column count
+- Theme: Selector option to modify thumbnail types and column count
+- CLI: Added 'hyde-shell open' for apps with mimetypes
+- Core: Clean up 'hyde-shell wallpaper' script 
+- Restore: Added option to trash the config to avoid conflicts
+- Waybar: Added pavucontrol-qt in the module
+- Rofi: Added search functionality to the game launcher menu.
 - Cliphist: image-history #1360
 - Cliphist: Rofi binds #1360
-- Gamelauncher: lutris inspector py script now uses the lutris DB to get meta dat making it faster than using lutris CLI
-- Gamelauncher: steam inspector py script is translated from fn_steam shell script. 
-- Gamelancher: catalog backend will merge both lutris and steam with hints for duplicates
-- Gamelauncher: "hyde-shell gamelauncher" now has --style and --backend args
+- Game launcher: lutris inspector py script now uses the lutris DB to get meta dat making it faster than using lutris CLI
+- Game launcher: steam inspector py script is translated from fn_steam shell script. 
+- Game launcher: catalog backend will merge both lutris and steam with hints for duplicates
+- Game launcher: "hyde-shell game launcher" now has --style and --backend args
 - Python: added pyproject.toml for ruff formatter
 - Shell: Added ".editorconfig" for shell scripts.
 - Cliphist: Added OCR backend. Invoking "hyde-shell cliphist -scan-image" or `Alt+V` on clipboard will extract the text of the latest image that exist in cliphist. 
 - Screenshot: Added QR code reading feature using `zbar` package. No default hotkey is provided. Call it via `hyde-shell screenshot sq`
+- Weather Applet: Added automatic locale detection for temperature units (°C/°F), time formats (12h/24h), and wind speed (km/h/mph).
+- Weather Applet: Implemented multi-language support based on system locale and added `WEATHER_LANG` for manual overrides.
+- Weather Applet: Added support for a user-defined configuration file at `~/.config/weather.env`.
 
 ### Changed
 
+- NVIDIA: Updated driver database to separate legacy and modern GPU support. `nvidia-open-dkms` now targets Turing (NV160) and newer, while `nvidia-580xx-dkms` covers Maxwell (NV110) through Volta (NV140).
+- QT: Move qtXct/colors.conf into qtXct/colors/wallbash.conf. This is how qtXct Settings parses color schemes the proper way.
 - Core: Moved core "color" switch inside directory in lib path. Prepare to make `~/.local/lib/hyde` external only scripts and corresponding directories will be sourced or executed internally. 
 - Wallbash: Remove wallbash.qt as it is a simple cp command now in the qtct.dcol template
+- UWSM: Start processes launched with app2unit.sh,rofi,`hyde-shell app` as services
 
+### Migration 
+
+##### Hyprland
+
+- Before updating HyDE, Please make sure your hyprland version is 0.53.0!
+- After Updating HyDE please make sure to fix any syntax error in ~/.config/hypr/*
+
+We are trying our best to fix any issues. So please try to your best to search for any duplicate issues and potential fixes! 
+
+Stay HyDErated!
+
+## Migration
+
+##### NVIDIA
+
+The driver selection/installation logic has been updated to align with Arch Linux recommendations.
+
+- **Turing (NV160) and newer**: Now defaults to `nvidia-open-dkms`.
+- **Maxwell (NV110) to Volta (NV140)**: Now defaults to `nvidia-580xx-dkms`.
+
+
+**Existing Users**
+- nv110-nv140 cards, please install `nvidia-580xx-dkms` before updating your whole system or before rebooting. `nvidia-open-dkms` could potentially borke your display. Goodluck!
+- nv160 (Turing) and above see **Fallback**
+
+**Fallback:**
+Users with Turing or newer cards using `nvidia-open-dkms` can fallback to `nvidia-580xx-dkms` if they encounter issues, as the 580xx branch still supports these architectures. 
+
+
+- Read wiki https://wiki.archlinux.org/title/NVIDIA
+- See common solutions https://github.com/HyDE-Project/HyDE/discussions/1477 
 
 
 ## v25.10.1

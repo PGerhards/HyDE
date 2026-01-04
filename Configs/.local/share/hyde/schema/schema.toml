@@ -195,6 +195,11 @@ type      = "object"
     description = "Scaling for wallpaper."
     type        = "integer"
 
+[properties.rofi.properties.wallpaper.properties.column_count]
+    default     = 3
+    description = "Number of columns for wallpaper selector."
+    type        = "integer"
+
 [properties.rofi.properties.emoji]
     description = "emoji-picker.sh configuration."
     type        = "object"
@@ -226,6 +231,16 @@ type      = "object"
     default     = 6
     description = "Scaling for theme selector."
     type        = "integer"
+
+[properties.rofi.properties.theme.properties.column_count]
+    default     = 3
+    description = "Number of columns for theme selector."
+    type        = "integer"
+
+[properties.rofi.properties.theme.properties.thumb_style]
+    description = "Thumbnail style for theme selector."
+    options     = [ "sqre", "quad", "blur" ]
+    type        = "string"
 
 [properties.rofi.properties.websearch]
     description = "hyde-shell rofi.websearch.sh configuration."
@@ -400,6 +415,11 @@ type      = "object"
 [properties.screenshot]
     description = "screenshot.sh configuration."
     type        = "object"
+
+[properties.screenshot.properties.annotation_enabled]
+    default     = true
+    description = "Enable or disable annotation feature."
+    type        = "boolean"
 
 [properties.screenshot.properties.annotation_tool]
     default     = "satty"

@@ -62,13 +62,13 @@ fn_mpris() {
 mpris_icon() {
     local player=${1:-default}
     declare -A player_dict=(
-                                      ["default"]=""
-                                      ["spotify"]=""
-                                      ["firefox"]=""
-                                      ["vlc"]="嗢"
-                                      ["google-chrome"]=""
-                                      ["opera"]=""
-                                      ["brave"]="")
+             ["default"]=""
+             ["spotify"]=""
+             ["firefox"]=""
+             ["vlc"]="嗢"
+             ["google-chrome"]=""
+             ["opera"]=""
+             ["brave"]="")
     for key in "${!player_dict[@]}"; do
         if [[ $player == "$key"* ]]; then
             echo "${player_dict[$key]}"

@@ -24,7 +24,7 @@ deploy_list() {
             tgt="${pth/#$HOME/}"
             if {
                 [ -d "$pth/$cfg_chk" ] || [ -f "$pth/$cfg_chk" ]
-            }                           && [ "$bkpFlag" == "Y" ]; then
+            } && [ "$bkpFlag" == "Y" ]; then
                 if [ ! -d "$BkpDir$tgt" ]; then
                     [[ $flg_DryRun -ne 1 ]] && mkdir -p "$BkpDir$tgt"
                 fi

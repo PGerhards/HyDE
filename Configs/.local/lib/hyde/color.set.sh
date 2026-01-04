@@ -176,7 +176,7 @@ preprocess_substitutions
 print_log -sec "wallbash" -stat "preprocessed" "color substitutions"
 revert_colors=0
 [ "$enableWallDcol" -eq 0 ] && {
-    grep          -q "$dcol_mode" <<< "$(get_hyprConf "COLOR_SCHEME")" || revert_colors=1
+    grep -q "$dcol_mode" <<< "$(get_hyprConf "COLOR_SCHEME")" || revert_colors=1
 }
 export revert_colors
 load_dconf_kdeglobals

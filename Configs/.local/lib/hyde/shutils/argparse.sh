@@ -22,9 +22,9 @@ argparse_init() {
 
 # Function to dynamically add CLI arguments
 argparse() {
-    local flags="$1" # "--long,-short"
-    local vars="$2" # "VAR1=true,VAR2=false"
-    local description="$3" # "Description about this CLI"
+    local flags="$1"          # "--long,-short"
+    local vars="$2"           # "VAR1=true,VAR2=false"
+    local description="$3"    # "Description about this CLI"
     local argparse_flags="$4" # "parameter=true"
 
     # Parse argparse_flags into an associative array
@@ -35,8 +35,8 @@ argparse() {
     done
 
     # Access flags directly from the associative array
-    local parameter=${flags_map[parameter]:-false} # Default to false (boolean flag)
-    local optional=${flags_map[optional]:-false} # Default to false
+    local parameter=${flags_map[parameter]:-false}                   # Default to false (boolean flag)
+    local optional=${flags_map[optional]:-false}                     # Default to false
     local parameter_optional=${flags_map[parameter_optional]:-false} # Alias for optional
     if [[ $parameter_optional == true ]]; then
         optional=true

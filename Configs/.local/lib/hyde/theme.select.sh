@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
+
 [[ $HYDE_SHELL_INIT -ne 1 ]] && eval "$(hyde-shell init)"
 rofiAssetDir="$SHARE_DIR/hyde/rofi/assets"
 hypr_border=${hypr_border:-"$(hyprctl -j getoption decoration:rounding | jq '.int')"}
 hypr_border=${hypr_border:-2}
-mon_data=$(hyprctl -j monitors)
-mon_x_res=$(jq '.[] | select(.focused==true) | if (.transform % 2 == 0) then .width else .height end' <<< "$mon_data")
-mon_scale=$(jq '.[] | select(.focused==true) | .scale' <<< "$mon_data" | sed "s/\.//")
+if [[ -n $HYPRLAND_INSTANCE_SIGNATURE ]]; then
+    mon_data=$(hyprctl -j monitors)
+    mon_x_res=$(jq '.[] | select(.focused==true) | if (.transform % 2 == 0) then .width else .height end' <<< "$mon_data")
+    mon_scale=$(jq '.[] | select(.focused==true) | .scale' <<< "$mon_data" | sed "s/\.//")
+fi
+
 mon_x_res=${mon_x_res:-1920}
 mon_scale=${mon_scale:-1}
 mon_x_res=$((mon_x_res * 100 / mon_scale))
+
 selector_menu() {
     font_scale="$ROFI_THEME_MENU_SCALE"
     [[ $font_scale =~ ^[0-9]+$ ]] || font_scale=${ROFI_SCALE:-10}
@@ -22,10 +27,10 @@ selector_menu() {
     max_avail=$((mon_x_res - (4 * font_scale)))
     col_count=$((max_avail / elm_width))
     [[ $col_count -gt 5 ]] && col_count=5
-    r_override="window{width:100%;} 
-                listview{columns:$col_count;} 
-                element{orientation:vertical;border-radius:${elem_border}px;} 
-                element-icon{border-radius:${icon_border}px;size:20em;} 
+    r_override="window{width:100%;}
+                listview{columns:${ROFI_THEME_COLUMN_COUNT:-${col_count}};}
+                element{orientation:vertical;border-radius:${elem_border}px;}
+                element-icon{border-radius:${icon_border}px;size:20em;}
                 element-text{enabled:false;}"
     RofiSel=$(find -L "$rofiAssetDir" -name "theme_style_*" | awk -F '[_.]' '{print $((NF - 1))}' | while
         read -r styleNum
@@ -51,11 +56,12 @@ menu style:
 
 selector style:
 quad|2      quad style
-square|1    square style 
+square|1    square style
 
 HELP
     exit 0
 }
+
 case "$1" in
     -m | -s | --select-menu)
         selector_menu
@@ -64,8 +70,8 @@ case "$1" in
         help_message
         ;;
     *)
-        font_scale="$ROFI_THEME_SCALE"
-        [[ $font_scale =~ ^[0-9]+$ ]] || font_scale=${ROFI_SCALE:-10}
+        font_scale="${ROFI_THEME_SCALE:-${ROFI_SCALE:-10}}"
+        [[ $font_scale =~ ^[0-9]+$ ]] || font_scale=10
         font_name=${ROFI_THEME_FONT:-$ROFI_FONT}
         font_name=${font_name:-$(get_hyprConf "MENU_FONT")}
         font_name=${font_name:-$(get_hyprConf "FONT")}
@@ -78,8 +84,8 @@ case "$1" in
                 elm_width=$(((20 + 12) * font_scale * 2))
                 max_avail=$((mon_x_res - (4 * font_scale)))
                 col_count=$((max_avail / elm_width))
-                r_override="window{width:100%;background-color:#00000003;} 
-                            listview{columns:$col_count;} 
+                r_override="window{width:100%;background-color:#00000003;}
+                            listview{columns:${ROFI_THEME_COLUMN_COUNT:-${col_count}};}
                             element{border-radius:${elem_border}px;background-color:@main-bg;}
                             element-icon{size:20em;border-radius:${icon_border}px 0px 0px ${icon_border}px;}"
                 thmbExtn="quad"
@@ -89,9 +95,9 @@ case "$1" in
                 elm_width=$(((23 + 12 + 1) * font_scale * 2))
                 max_avail=$((mon_x_res - (4 * font_scale)))
                 col_count=$((max_avail / elm_width))
-                r_override="window{width:100%;} 
-                            listview{columns:$col_count;} 
-                            element{border-radius:${elem_border}px;padding:0.5em;} 
+                r_override="window{width:100%;}
+                            listview{columns:${ROFI_THEME_COLUMN_COUNT:-${col_count}};}
+                            element{border-radius:${elem_border}px;padding:0.5em;}
                             element-icon{size:23em;border-radius:${icon_border}px;}"
                 thmbExtn="sqre"
                 ROFI_THEME_STYLE="selector"
@@ -103,7 +109,7 @@ get_themes
 rofiSel=$(
     i=0
     while [ $i -lt ${#thmList[@]} ]; do
-        echo -en "${thmList[$i]}\x00icon\x1f$thmbDir/$(set_hash "${thmWall[$i]}").${thmbExtn:-sqre}\n"
+        echo -en "${thmList[$i]}\x00icon\x1f$thmbDir/$(set_hash "${thmWall[$i]}").${thmbExtn:-${ROFI_THEME_THUMB_STYLE:-sqre}}\n"
         i=$((i + 1))
     done | rofi -dmenu \
         -theme-str "$font_override" \

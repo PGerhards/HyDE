@@ -288,11 +288,12 @@ ocr_scan() {
 
     # shellcheck disable=SC1091
     source "${LIB_DIR}/hyde/shutils/ocr.sh"
+    source ${XDG_STATE_HOME}/hyde/config
     local runtime_dir="${XDG_RUNTIME_DIR:-/run/user/${EUID}}/hyde"
     local image_path="${runtime_dir}/cliphist_ocr.png"
     local index
     index="$(HYDE_CLIPHIST_IMAGE_ONLY=1 "${LIB_DIR}/hyde/cliphist.image.py" | head -n1)"
-    [[ -n $index  ]] || {
+    [[ -n $index ]] || {
         send_notifs "OCR Error" "No images in clipboard history..." -r 9
         exit 1
     }
@@ -303,7 +304,7 @@ ocr_scan() {
         notify-send "OCR Error" "No image data in clipboard -r 9"
         exit 1
     fi
-    print_log -g  "Scanning ${image_path}"
+    print_log -g "Scanning ${image_path}"
     send_notifs "OCR" "Scanning latest image from clipboard..." -i "${image_path}" -r 9
     ocr_extract "$image_path"
 

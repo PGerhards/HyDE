@@ -21,9 +21,7 @@ fn_wallcache() {
     local is_video
     is_video=$(file --mime-type -b "$x_wall" | grep -c '^video/')
     if [ "$is_video" -eq 1 ]; then
-        if
-            [ ! -e "$thmbDir/$x_hash.thmb" ] || [ ! -e "$thmbDir/$x_hash.sqre" ] || [ ! -e "$thmbDir/$x_hash.blur" ] || [ ! -e "$thmbDir/$x_hash.quad" ] || [ ! -e "$dcolDir/$x_hash.dcol" ]
-        then
+        if [ ! -e "$thmbDir/$x_hash.thmb" ] || [ ! -e "$thmbDir/$x_hash.sqre" ] || [ ! -e "$thmbDir/$x_hash.blur" ] || [ ! -e "$thmbDir/$x_hash.quad" ] || [ ! -e "$dcolDir/$x_hash.dcol" ]; then
             local temp_image="/tmp/$x_hash.png"
             notify-send -a "HyDE wallpaper" "Extracting thumbnail from video wallpaper..."
             extract_thumbnail "$x_wall" "$temp_image"
@@ -36,7 +34,7 @@ fn_wallcache() {
     [ ! -e "$thmbDir/$x_hash.quad" ] && magick "$thmbDir/$x_hash.sqre" \( -size 500x500 xc:white -fill "rgba(0,0,0,0.7)" -draw "polygon 400,500 500,500 500,0 450,0" -fill black -draw "polygon 500,500 500,0 450,500" \) -alpha Off -compose CopyOpacity -composite "$thmbDir/$x_hash.quad.png" && mv "$thmbDir/$x_hash.quad.png" "$thmbDir/$x_hash.quad"
     {
         [ ! -e "$dcolDir/$x_hash.dcol" ] || [ "$(wc -l < "$dcolDir/$x_hash.dcol")" -ne 89 ]
-    }                                                                && "$scrDir/wallbash.sh" --custom "$wallbashCustomCurve" "$thmbDir/$x_hash.thmb" "$dcolDir/$x_hash" &> /dev/null
+    } && "$scrDir/wallbash.sh" --custom "$wallbashCustomCurve" "$thmbDir/$x_hash.thmb" "$dcolDir/$x_hash" &> /dev/null
     if [ "$is_video" -eq 1 ]; then
         rm -f "$temp_image"
     fi
@@ -71,9 +69,7 @@ export -f fn_wallcache fn_wallcache_force extract_thumbnail
 while getopts "w:t:f" option; do
     case $option in
         w)
-            if
-                [ -z "$OPTARG" ] || [ ! -f "$OPTARG" ]
-            then
+            if [ -z "$OPTARG" ] || [ ! -f "$OPTARG" ]; then
                 echo "Error: Input wallpaper \"$OPTARG\" not found!"
                 exit 1
             fi

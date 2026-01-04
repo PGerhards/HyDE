@@ -118,16 +118,16 @@ wallpapers=$(find -H "$FAV_THEME_DIR" -type f \( -iname "*.gif" -o -iname "*.jpg
 wpCount="$(wc -l <<< "$wallpapers")"
 {
     [ -z "$wallpapers" ] && print_log -r "[ERROR] " "No wallpapers found" && exit_flag=true
-}                                                                                            || {
-    readonly                                                                           wallpapers && print_log -g "\n[pass]  " "wallpapers :: [count] $wpCount (.gif+.jpg+.jpeg+.png)"
+} || {
+    readonly wallpapers && print_log -g "\n[pass]  " "wallpapers :: [count] $wpCount (.gif+.jpg+.jpeg+.png)"
 }
 if [ -d "$FAV_THEME_DIR/logo" ]; then
     logos=$(find -H "$FAV_THEME_DIR/logo" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \))
     logosCount="$(wc -l <<< "$logos")"
     {
         [ -z "$logos" ] && print_log -y "[note] " "No logos found"
-    }                                        || {
-        readonly                                           logos && print_log -g "[pass]  " "logos :: [count] $logosCount\n"
+    } || {
+        readonly logos && print_log -g "[pass]  " "logos :: [count] $logosCount\n"
     }
 fi
 check_tars() {
@@ -197,16 +197,16 @@ check_tars Menu-Font
 check_tars Notification-Font
 print_log "" && [[ $exit_flag == true ]] && exit 1
 declare -A archive_map=(
-                                  ["Gtk"]="$HOME/.local/share/themes"
-                                  ["Icon"]="$HOME/.local/share/icons"
-                                  ["Cursor"]="$HOME/.local/share/icons"
-                                  ["Sddm"]="/usr/share/sddm/themes"
-                                  ["Font"]="$HOME/.local/share/fonts"
-                                  ["Document-Font"]="$HOME/.local/share/fonts"
-                                  ["Monospace-Font"]="$HOME/.local/share/fonts"
-                                  ["Bar-Font"]="$HOME/.local/share/fonts"
-                                  ["Menu-Font"]="$HOME/.local/share/fonts"
-                                  ["Notification-Font"]="$HOME/.local/share/fonts")
+         ["Gtk"]="$HOME/.local/share/themes"
+         ["Icon"]="$HOME/.local/share/icons"
+         ["Cursor"]="$HOME/.local/share/icons"
+         ["Sddm"]="/usr/share/sddm/themes"
+         ["Font"]="$HOME/.local/share/fonts"
+         ["Document-Font"]="$HOME/.local/share/fonts"
+         ["Monospace-Font"]="$HOME/.local/share/fonts"
+         ["Bar-Font"]="$HOME/.local/share/fonts"
+         ["Menu-Font"]="$HOME/.local/share/fonts"
+         ["Notification-Font"]="$HOME/.local/share/fonts")
 for prefix in "${!archive_map[@]}"; do
     tarFile="$(find -H "$THEME_DIR" -type f -name "${prefix}_*.tar.*")"
     [ -f "$tarFile" ] || continue
@@ -223,7 +223,7 @@ for prefix in "${!archive_map[@]}"; do
     fi
     tgtChk="$(basename "$(tar -tf "$tarFile" | cut -d '/' -f1 | sort -u)")"
     [[ $FULL_THEME_UPDATE == true ]] || {
-        [            -d "$tgtDir/$tgtChk" ] && print_log -y "[skip] " "\"$tgtDir/$tgtChk\"" -y " already exists" && continue
+        [ -d "$tgtDir/$tgtChk" ] && print_log -y "[skip] " "\"$tgtDir/$tgtChk\"" -y " already exists" && continue
     }
     print_log -g "[extracting] " "$tarFile --> $tgtDir"
     if [ -w "$tgtDir" ]; then

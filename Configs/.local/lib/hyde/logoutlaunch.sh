@@ -49,7 +49,7 @@ if [ "$enableWallDcol" -eq 0 ]; then
 fi
 {
     [ "$dcol_mode" == "dark" ] && export BtnCol="white"
-}                                                        || export BtnCol="black"
+} || export BtnCol="black"
 hypr_border="${hypr_border:-10}"
 export active_rad=$((hypr_border * 5))
 export button_rad=$((hypr_border * 8))
