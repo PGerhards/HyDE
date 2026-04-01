@@ -6,6 +6,20 @@ All notable changes to `HyDE` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to _Modified_ [CalVer](https://calver.org/). See [Versioning](https://github.com/HyDE-Project/HyDE/blob/master/RELEASE_POLICY.md#versioning-yymq) For more info
  -->
 
+## Unreleased
+
+### Changed
+
+- Wallpaper: Pt. 1 of multi theming backend.
+- Hyprland: Remove `hyde.conf` as it is too brittle. Use `hyprland.conf` instead!
+- Window: Moved 'windowpin' to 'window.pin'. For consistency.
+- pyutils: Kinda clean up libnotify wrapper.
+
+### Added
+- Window: added 'hyde-shell window.mute' to toggle window audio. This is a python implementation for 'wl-togglesink'
+- l10n: Added a bash POC for localization. Python already has built in support for localization. This is just a POC for bash scripts. It is not yet fully implemented and is not yet available for all scripts. So we can share language packs. Please open a discussion if you are interested in helping with localization. (keeping this here just to see who really cared lol.)
+
+
 ## v26.1.2
 
 
