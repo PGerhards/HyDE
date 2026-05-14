@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 # Source this file in any script that needs localization support. It sets up the _T associative array with translations based on the user's locale.
 
-# Extract the system locale and set HYDE_LOCALE to the first two characters (language code)
+# Extract the system locale and set DESKTOP_LANG to the first two characters (language code)
 _raw_sys_lang="${LC_ALL:-${LANG:-en}}"
-export HYDE_LOCALE="${HYDE_LOCALE:-${_raw_sys_lang:0:2}}"
-export HYDE_LOCALE="${HYDE_LOCALE,,}"
+export DESKTOP_LANG="${DESKTOP_LANG:-${_raw_sys_lang:0:2}}"
+export DESKTOP_LANG="${DESKTOP_LANG,,}"
 #? Handles edge cases where locale is set to "C" or "POSIX" which are not actual languages
-[[ "$HYDE_LOCALE" == "c" || "$HYDE_LOCALE" == "po" ]] && export HYDE_LOCALE="en"
+[[ "$DESKTOP_LANG" == "c" || "$DESKTOP_LANG" == "po" ]] && export DESKTOP_LANG="en"
 
 # Initialize the _T associative array for translations
 declare -A _T 2>/dev/null || : # Localization support
-[[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/hyde/locale/${HYDE_LOCALE}.sh" ]] && source "${XDG_DATA_HOME:-$HOME/.local/share}/hyde/locale/${HYDE_LOCALE}.sh"
-[[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/hyde/locale/${HYDE_LOCALE}.sh" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/hyde/locale/${HYDE_LOCALE}.sh"
+[[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/hyde/locale/${DESKTOP_LANG}.sh" ]] && source "${XDG_DATA_HOME:-$HOME/.local/share}/hyde/locale/${DESKTOP_LANG}.sh"
+[[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/hyde/locale/${DESKTOP_LANG}.sh" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/hyde/locale/${DESKTOP_LANG}.sh"
 
 # method overrides for localization
 
