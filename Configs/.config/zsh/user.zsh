@@ -15,7 +15,10 @@
 # fi
 
 #   Overrides 
-# TODO: Check if this is correct, if not, revert back to unset HYDE_...
+# zsh CONTENT (plugins, prompt, aliases, tools) is owned by the chezmoi dotfiles repo
+# and deployed to $ZDOTDIR/.zshrc on this machine. HyDE only provides the framework.
+# These two flags disable HyDE's own oh-my-zsh plugins and starship/p10k prompt so the
+# zinit + oh-my-posh setup loaded from .zshrc owns plugins and the prompt instead.
 HYDE_ZSH_NO_PLUGINS=1 # Set to 1 to disable loading of oh-my-zsh plugins, useful if you want to use your zsh plugins system 
 unset HYDE_ZSH_PROMPT # Uncomment to unset/disable loading of prompts from HyDE and let you load your own prompts
 # HYDE_ZSH_COMPINIT_CHECK=1 # Set 24 (hours) per compinit security check // lessens startup time
