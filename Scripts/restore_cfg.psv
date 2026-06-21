@@ -29,7 +29,7 @@ B = Backup - Backup the target
 
 
  Hyde core files 
-P|${HOME}/.config/hyde|config.toml|hyprland
+S|${HOME}/.config/hyde|config.toml|hyprland
 S|${HOME}/.config/hypr|shaders.conf workflows.conf animations.conf windowrules.conf keybindings.conf userprefs.conf monitors.conf|hyprland
 P|${HOME}/.config/hypr|nvidia.conf|hyprland nvidia-utils
 P|${HOME}/.config/hypr/themes|theme.conf wallbash.conf colors.conf|hyprland
@@ -102,7 +102,10 @@ S|${HOME}/.config/zsh/functions|bat.zsh|zsh bat
 S|${HOME}/.config/zsh/completions|fzf.zsh|zsh fzf
 S|${HOME}/.config/zsh/completions|hydectl.zsh|zsh
 
-P|${HOME}/.config/zsh|.zshrc user.zsh prompt.zsh plugin.zsh|zsh
+# user.zsh carries the HyDE framework flags (disable HyDE plugins/prompt) -> back it up (S)
+S|${HOME}/.config/zsh|user.zsh|zsh
+# .zshrc is owned by the chezmoi dotfiles repo (zinit + oh-my-posh content); keep P so HyDE never overwrites it. prompt.zsh/plugin.zsh stay at upstream defaults.
+P|${HOME}/.config/zsh|.zshrc prompt.zsh plugin.zsh|zsh
 P|${HOME}/.config/zsh|.p10k.zsh|zsh zsh-theme-powerlevel10k
 
 
